@@ -108,16 +108,16 @@ const projectsByLocale: Record<Locale, Project[]> = {
       context:
         "Una farmacia en Colombia necesitaba atención automatizada 24/7 y digitalizar pedidos, consultas y cotizaciones a proveedores sin ampliar plantilla.",
       decision:
-        "Un único 'cerebro' (agente con tool-calling sobre LLM) compartido por WhatsApp, Messenger, Telegram y voz. Tools con acceso real a catálogo y pedidos, guardrails sanitarios y derivación a humano. Voz en tiempo real speech-to-speech. Proveedor de LLM elegido por caso de uso: Gemini Live por latencia en voz, OpenAI para el agente de texto con tool-calling y Claude como copiloto de construcción.",
+        "Un único 'cerebro' (agente con tool-calling sobre LLM) compartido por WhatsApp, Messenger, Telegram y voz. Tools con acceso real a catálogo y pedidos, guardrails sanitarios y derivación a humano. Voz por telefonía con Vapi + gpt-4o-mini (pipeline STT→LLM→TTS); también con experiencia en Gemini Live (speech-to-speech) para baja latencia. LLM elegido por caso de uso: gpt-4o-mini para el agente de texto y de voz por coste/latencia, y Claude como copiloto de construcción.",
       result:
         "Agente en producción que busca productos, crea pedidos y deriva a un operador cuando hace falta. Panel con RBAC, vault de claves cifradas (AES-256-GCM) y configuración en caliente. Pedidos por voz creados end-to-end.",
       metrics: [
-        "Agente con 12 tools",
+        "Agente con 13 tools",
         "4 canales: WhatsApp, Messenger, Telegram, voz",
-        "Voz speech-to-speech en tiempo real",
+        "Voz por telefonía (Vapi + gpt-4o-mini)",
         "Desplegado en Docker Swarm",
       ],
-      stack: "Fastify, Node.js, TypeScript, OpenAI, Gemini Live, Supabase, PostgreSQL, Docker Swarm, WhatsApp Cloud API, Twilio",
+      stack: "Fastify, Node.js, TypeScript, OpenAI (gpt-4o-mini), Vapi, Gemini Live, Supabase, PostgreSQL, Docker Swarm, WhatsApp Cloud API, Twilio",
       diagram: "/images/farmacenter-arquitectura.webp",
       nda: true,
     },
@@ -233,16 +233,16 @@ const projectsByLocale: Record<Locale, Project[]> = {
       context:
         "A pharmacy in Colombia needed 24/7 automated support and to digitize orders, queries, and supplier quotes without growing headcount.",
       decision:
-        "A single 'brain' (LLM agent with tool-calling) shared across WhatsApp, Messenger, Telegram, and voice. Tools with real catalog and order access, healthcare guardrails, and human handoff. Real-time speech-to-speech voice. LLM provider chosen per use case: Gemini Live for voice latency, OpenAI for the tool-calling text agent, and Claude as the build copilot.",
+        "A single 'brain' (LLM agent with tool-calling) shared across WhatsApp, Messenger, Telegram, and voice. Tools with real catalog and order access, healthcare guardrails, and human handoff. Telephony voice with Vapi + gpt-4o-mini (STT→LLM→TTS pipeline); also experienced with Gemini Live (speech-to-speech) for low latency. LLM chosen per use case: gpt-4o-mini for the text and voice agent for cost/latency, and Claude as the build copilot.",
       result:
         "Production agent that searches products, creates orders, and hands off to an operator when needed. Admin panel with RBAC, an encrypted secrets vault (AES-256-GCM), and hot config. Voice orders created end-to-end.",
       metrics: [
-        "Agent with 12 tools",
+        "Agent with 13 tools",
         "4 channels: WhatsApp, Messenger, Telegram, voice",
-        "Real-time speech-to-speech voice",
+        "Telephony voice (Vapi + gpt-4o-mini)",
         "Deployed on Docker Swarm",
       ],
-      stack: "Fastify, Node.js, TypeScript, OpenAI, Gemini Live, Supabase, PostgreSQL, Docker Swarm, WhatsApp Cloud API, Twilio",
+      stack: "Fastify, Node.js, TypeScript, OpenAI (gpt-4o-mini), Vapi, Gemini Live, Supabase, PostgreSQL, Docker Swarm, WhatsApp Cloud API, Twilio",
       diagram: "/images/farmacenter-arquitectura.webp",
       nda: true,
     },
@@ -482,7 +482,7 @@ const copy = {
       {
         title: "Voz en tiempo real",
         body:
-          "Voz speech-to-speech (Gemini Live / OpenAI Realtime sobre Twilio) que conduce el flujo, crea pedidos y responde con baja latencia.",
+          "Voz por telefonía con Vapi + gpt-4o-mini (pipeline STT→LLM→TTS) que conduce el flujo, crea pedidos y responde con baja latencia; también con experiencia en Gemini Live (speech-to-speech).",
       },
       {
         title: "Automatización conversacional",
@@ -594,7 +594,7 @@ const copy = {
       {
         title: "Real-time voice",
         body:
-          "Speech-to-speech voice (Gemini Live / OpenAI Realtime over Twilio) that drives the flow, creates orders, and replies with low latency.",
+          "Telephony voice with Vapi + gpt-4o-mini (STT→LLM→TTS pipeline) that drives the flow, creates orders, and replies with low latency; also experienced with Gemini Live (speech-to-speech).",
       },
       {
         title: "Conversational automation",
