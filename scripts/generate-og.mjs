@@ -10,7 +10,7 @@ const OUT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "public", "og
 const NAME = "Lucas Vicente";
 const TITLE = "AI Solutions Builder";
 const TECH = "Agentes IA · Voz en tiempo real · React · Next.js · Go · Docker";
-const STATUS = "Disponible · Madrid · Remoto o híbrido";
+const STATUS = "Madrid · Remoto o híbrido";
 const BADGE = "7 productos en producción";
 const FONT = "Inter, 'Segoe UI', system-ui, -apple-system, sans-serif";
 

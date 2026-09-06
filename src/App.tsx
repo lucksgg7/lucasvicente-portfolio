@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
+import { createPortal } from "react-dom";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -420,7 +421,6 @@ const copy = {
     navProcess: "Cómo trabajo",
     navHiring: "Contratación",
     contactCta: "Contactar",
-    available: "Disponible · 15 días de aviso",
     locationPill: "Madrid · Full-time · Remoto desde Madrid",
     heroEyebrow: "AI Solutions Builder",
     showMoreCases: "Ver más casos",
@@ -500,7 +500,7 @@ const copy = {
     sectionHiringEyebrow: "Contratación",
     sectionHiringTitle: "Si tu equipo necesita ejecutar rápido sin perder calidad",
     sectionHiringText:
-      "Abierto a roles de AI Solutions Builder, automatización con IA, implementación e integración de soluciones, arquitectura de producto SaaS o Customer Success técnico, y perfiles híbridos entre tecnología, producto y negocio. Madrid presencial, híbrido o remoto desde Madrid. Full-time, 15 días de aviso.",
+      "Abierto a roles de AI Solutions Builder, automatización con IA, implementación e integración de soluciones, arquitectura de producto SaaS o Customer Success técnico, y perfiles híbridos entre tecnología, producto y negocio. Madrid presencial, híbrido o remoto desde Madrid. Full-time.",
     sectionHiringPoints: [
       "AI Solutions Builder",
       "Automatización con IA",
@@ -532,7 +532,6 @@ const copy = {
     navProcess: "How I work",
     navHiring: "Hiring",
     contactCta: "Contact",
-    available: "Available · 15-day notice",
     locationPill: "Madrid · Full-time · Remote from Madrid",
     heroEyebrow: "AI Solutions Builder",
     showMoreCases: "Show more cases",
@@ -612,7 +611,7 @@ const copy = {
     sectionHiringEyebrow: "Hiring",
     sectionHiringTitle: "If your team needs to execute fast without losing quality",
     sectionHiringText:
-      "Open to AI Solutions Builder, AI automation, solution implementation and integration, SaaS product architecture, or technical Customer Success roles, plus hybrid profiles across tech, product, and business. Madrid on-site, hybrid, or remote from Madrid. Full-time, 15-day notice.",
+      "Open to AI Solutions Builder, AI automation, solution implementation and integration, SaaS product architecture, or technical Customer Success roles, plus hybrid profiles across tech, product, and business. Madrid on-site, hybrid, or remote from Madrid. Full-time.",
     sectionHiringPoints: [
       "AI Solutions Builder",
       "AI automation",
@@ -896,16 +895,6 @@ function App() {
                 className="h-20 w-20 rounded-full border-2 border-background object-cover ring-2 ring-blue-200 dark:ring-blue-900 sm:h-24 sm:w-24"
               />
               <div className="flex flex-col gap-2">
-                <Badge
-                  variant="outline"
-                  className="w-fit gap-2 border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-50 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-400 dark:hover:bg-emerald-950"
-                >
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-                  </span>
-                  {t.available}
-                </Badge>
                 <p className="text-sm text-muted-foreground">{t.locationPill}</p>
               </div>
             </div>
@@ -1432,7 +1421,7 @@ function App() {
         </DialogContent>
       </Dialog>
 
-      {activeScreenshot ? (
+      {activeScreenshot ? createPortal(
         <div
           className="fixed inset-0 z-[90] flex items-center justify-center bg-neutral-900/80 p-4 backdrop-blur-sm"
           onClick={() => setActiveScreenshot(null)}
@@ -1460,7 +1449,8 @@ function App() {
               className="max-h-[88vh] w-full rounded-md object-contain"
             />
           </div>
-        </div>
+        </div>,
+        document.body,
       ) : null}
     </div>
   );
